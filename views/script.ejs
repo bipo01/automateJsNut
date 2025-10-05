@@ -64,7 +64,7 @@
 		const formData = new FormData(form);
 		const body = new URLSearchParams(formData);
 
-		fetch("https://automatejsnut.onrender.com/", { method: "POST", body });
+		fetch("https://automatejsnut.onrender.com/submit", { method: "POST", body });
 
 		const linesArr = linha.value.split(" ");
 		linesArr.shift();
