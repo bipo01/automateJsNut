@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cadastro Script</title>
+		<%- include("./styles.ejs") %>
+	</head>
+	<body>
+		<form id="cadastrarLinha">
+			<div class="urlCamposWrapper">
+				<input type="text" name="url" id="url" placeholder="URL" />
+				<input type="number" name="camposPadroes" id="camposPadroes" placeholder="Campos padrões" />
+			</div>
+
+			<div class="btnCamposWrapper">
+				<input type="text" name="btnSubmit" id="btnSubmit" placeholder="Botão de submit (X/Y)" />
+				<input type="number" name="camposDinamicos" id="camposDinamicos" placeholder="Campos dinâmicos" />
+			</div>
+
+			<input type="text" name="linha" id="linha" placeholder="linha" />
+
+			<button type="submit">Enviar</button>
+		</form>
+
+		<%- include("./script.ejs") %>
+	</body>
+</html>

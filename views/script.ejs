@@ -1,0 +1,73 @@
+<script>
+	const form = document.querySelector("#cadastrarLinha");
+	const url = document.querySelector("#url");
+	const linha = document.querySelector("#linha");
+	const camposDinamicos = document.querySelector("#camposDinamicos");
+	const camposPadroes = document.querySelector("#camposPadroes");
+	const btnSubmit = document.querySelector("#btnSubmit");
+	const btnCamposWrapper = document.querySelector(".btnCamposWrapper");
+	const btns = document.querySelector("#btns");
+
+	camposDinamicos.addEventListener("input", (e) => {
+		document.querySelectorAll(".camposDinamicosInputWrapper")?.forEach((c) => {
+			c.remove();
+		});
+
+		for (let index = 0; index < e.target.value; index++) {
+			const html = `
+				<div class="camposDinamicosInputWrapper">
+					<input type="text" name="inp${index + 1}" id="inp${index + 1}" placeholder="X/Y" />
+					<input type="number" name="valor${index + 1}" id="valor${index + 1}" placeholder="Coluna" min="1" />
+				</div>
+				
+				`;
+			linha.insertAdjacentHTML("beforebegin", html);
+		}
+	});
+
+	camposPadroes.addEventListener("input", (e) => {
+		document.querySelectorAll(".camposPadroesInputWrapper")?.forEach((c) => {
+			c.remove();
+		});
+
+		for (let index = 0; index < e.target.value; index++) {
+			const html = `
+				<div class="camposPadroesInputWrapper">
+					<input type="text" name="inpPadrao${index + 1}" id="inpPadrao${index + 1}" placeholder="X/Y" />
+					<input type="text" name="valorPadrao${index + 1}" id="valorPadrao${index + 1}" placeholder="Valor" />
+				</div>
+				
+				`;
+			btnCamposWrapper.insertAdjacentHTML("beforebegin", html);
+		}
+	});
+
+	// btns.addEventListener("input", (e) => {
+	// 	document.querySelectorAll(".btnsWrapper")?.forEach((c) => {
+	// 		c.remove();
+	// 	});
+
+	// 	for (let index = 0; index < e.target.value; index++) {
+	// 		const html = `
+	// 			<div class="btnsWrapper">
+	// 				<input type="text" name="btn${index + 1}" id="btn${index + 1}" placeholder="X/Y" />
+	// 			</div>
+
+	// 			`;
+	// 		document.querySelector("button[type='submit']").insertAdjacentHTML("beforebegin", html);
+	// 	}
+	// });
+
+	form.addEventListener("submit", (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(form);
+		const body = new URLSearchParams(formData);
+
+		fetch("http://localhost:3000/submit", { method: "POST", body });
+
+		const linesArr = linha.value.split(" ");
+		linesArr.shift();
+		linha.value = linesArr.join(" ");
+	});
+</script>
